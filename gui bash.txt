@@ -1,3 +1,12 @@
-git commit -m "primeiro commit"
+//para iniciar//
+git init
+//para listar as modificações//
+git status
+//para salvar a modificação//
+git add *
+//Para salvar permanente//
+git commit -m "nome do commit"
+//caso dê algum problema no envio//
 git pull --rebase
+//para enviar as modificações//
 git push -u origin master
