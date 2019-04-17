@@ -1,4 +1,3 @@
 git commit -m "primeiro commit"
-
+git pull --rebase
 git push -u origin master
-adadasd
