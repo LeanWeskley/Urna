@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLTeladeVotacaoController">
+   <children>
+      <Pane fx:id="pane" prefHeight="650.0" prefWidth="750.0" style="-fx-background-color: white;">
+         <children>
+            <Pane prefHeight="112.0" prefWidth="750.0" style="-fx-background-color: #00b300;">
+               <children>
+                  <ImageView fitHeight="112.0" fitWidth="106.0" layoutX="322.0" opacity="0.86">
+                     <image>
+                        <Image url="@../img/vot.png" />
+                     </image>
+                  </ImageView>
+                  <Text fontSmoothingType="LCD" layoutX="302.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Votação" wrappingWidth="146.0">
+                     <fill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#fafafa" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </fill>
+                     <font>
+                        <Font name="Georgia Bold" size="34.0" />
+                     </font>
+                  </Text>
+                  <Line endX="467.0" layoutX="280.0" layoutY="109.0" startX="-277.0" stroke="#f59118" strokeDashOffset="10.0" strokeMiterLimit="80.0" strokeWidth="6.0" />
+                  <Line endX="639.0" layoutX="109.0" layoutY="106.0" startX="-108.0" stroke="WHITE" strokeDashOffset="10.0" strokeMiterLimit="80.0" strokeWidth="3.0" />
+               </children>
+            </Pane>
+            <Button layoutX="404.0" layoutY="183.0" mnemonicParsing="false" onAction="#bt7" prefHeight="70.0" prefWidth="80.0" text="7" />
+            <Button layoutX="516.0" layoutY="183.0" mnemonicParsing="false" onAction="#bt8" prefHeight="70.0" prefWidth="80.0" text="8" />
+            <Button layoutX="627.0" layoutY="183.0" mnemonicParsing="false" onAction="#bt9" prefHeight="70.0" prefWidth="80.0" text="9" />
+            <Button layoutX="627.0" layoutY="279.0" mnemonicParsing="false" onAction="#bt6" prefHeight="70.0" prefWidth="80.0" text="6" />
+            <Button layoutX="516.0" layoutY="279.0" mnemonicParsing="false" onAction="#bt5" prefHeight="70.0" prefWidth="80.0" text="5" />
+            <Button layoutX="404.0" layoutY="279.0" mnemonicParsing="false" onAction="#bt4" prefHeight="70.0" prefWidth="80.0" text="4" />
+            <Button layoutX="404.0" layoutY="369.0" mnemonicParsing="false" onAction="#bt1" prefHeight="70.0" prefWidth="80.0" text="1" />
+            <Button layoutX="516.0" layoutY="369.0" mnemonicParsing="false" onAction="#bt2" prefHeight="70.0" prefWidth="80.0" text="2" />
+            <Button layoutX="627.0" layoutY="369.0" mnemonicParsing="false" onAction="#bt3" prefHeight="70.0" prefWidth="80.0" text="3" />
+            <Text layoutX="33.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Candidato:">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="33.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chapa:">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="35.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cargo:">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Button layoutX="617.0" layoutY="539.0" mnemonicParsing="false" onAction="#btConfirma" prefHeight="80.0" prefWidth="119.0" style="-fx-background-color: green; -fx-border-color: black; -fx-border-radius: 4px;" text="CONFIRMA">
+               <font>
+                  <Font name="Meiryo" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="500.0" layoutY="539.0" mnemonicParsing="false" onAction="#btCorrige" prefHeight="80.0" prefWidth="110.0" style="-fx-background-color: orange; -fx-border-color: black; -fx-border-radius: 4px;" text="CORRIGE">
+               <font>
+                  <Font name="Meiryo" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="382.0" layoutY="539.0" mnemonicParsing="false" onAction="#btBranco" prefHeight="80.0" prefWidth="110.0" style="-fx-background-color: WHITE; -fx-border-color: BLACK; -fx-border-radius: 4px;" text="BRANCO">
+               <font>
+                  <Font name="Meiryo UI" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="516.0" layoutY="448.0" mnemonicParsing="false" onAction="#bt0" prefHeight="70.0" prefWidth="80.0" text="0" />
+            <TextField fx:id="tfVotacao" layoutX="456.0" layoutY="133.0" prefHeight="25.0" prefWidth="200.0" />
+            <TextField fx:id="tfCandidato" layoutX="159.0" layoutY="230.0" prefHeight="25.0" prefWidth="146.0" />
+            <TextField fx:id="tfChapa" layoutX="115.0" layoutY="301.0" prefHeight="25.0" prefWidth="192.0" />
+            <TextField fx:id="tfCargo" layoutX="115.0" layoutY="371.0" prefHeight="25.0" prefWidth="192.0" />
+            <ImageView fitHeight="92.0" fitWidth="106.0" layoutX="33.0" layoutY="533.0" preserveRatio="true">
+               <image>
+                  <Image url="@../img/ofv.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
