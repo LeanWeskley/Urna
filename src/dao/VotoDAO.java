@@ -7,8 +7,13 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Apuracao;
 import model.Candidato;
 import model.Voto;
 
@@ -37,13 +42,34 @@ public class VotoDAO {
         return false;
     
     }
-    public ArrayList<Voto> getResult(){
+    public ArrayList<Apuracao> getResult(){
         CandidatoDAO candidatoDAO = new CandidatoDAO();
         ArrayList<Candidato> candidatos = candidatoDAO.allCandidato();
         if(candidatos.size() > 0){
-             ArrayList<Voto> result = new ArrayList<>();
+             ArrayList<Apuracao> result = new ArrayList<>();
              for(Candidato dados : candidatos){
-                 String sql = "";
+                 System.out.println();
+                 String sql = "select count(voto) as total, candidato from votos where numero_candidato = ?";
+                 try {
+                     PreparedStatement stmt = con.prepareStatement(sql);
+                     stmt.setInt(1, dados.getNumero());
+                     ResultSet rs = stmt.executeQuery();
+                     while(rs.next()){
+                         Voto votos = new Voto();
+                         Candidato candidato = new Candidato();
+                         candidato.setFuncao(dados.getFuncao());
+                         candidato.setNome(dados.getNome());
+                         candidato.setNumero(dados.getNumero());
+                         System.out.println(rs.getString("total"));
+                         votos.setVoto(rs.getInt("total"));
+                         Apuracao apuracao = new Apuracao();
+                         apuracao.setCandidato(candidato);
+                         apuracao.setVoto(votos);
+                         result.add(apuracao);
+                     }
+                 } catch (SQLException ex) {
+                     Logger.getLogger(VotoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                 }
              }
             return result;
         }

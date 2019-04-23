@@ -88,6 +88,7 @@ public class CandidatoDAO {
                 Candidato dados = new Candidato();
                 dados.setFuncao(resultado.getString("funcao"));
                 dados.setNome(resultado.getString("nome"));
+                dados.setNumero(resultado.getInt("numero"));
                 result.add(dados);
             }
         } catch (SQLException ex) {

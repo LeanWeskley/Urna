@@ -95,7 +95,7 @@ public class FXMLTeladeVotacaoController implements Initializable {
     void btConfirma() {
         VotoDAO votoDAO = new VotoDAO();
         Voto voto = new Voto();
-       voto.setVoto(Integer.parseInt(tfVotacao.getText()));
+       voto.setVoto(Integer.parseInt(tfVotacao.getText().substring(2, tfVotacao.getLength())));
        voto.setCandidato(tfCandidato.getText());       
        boolean result = votoDAO.salvar(voto);
        if(result){
