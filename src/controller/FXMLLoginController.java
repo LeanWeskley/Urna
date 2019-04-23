@@ -36,7 +36,8 @@ public class FXMLLoginController implements Initializable {
 
     @FXML
     void btEntrar(ActionEvent event) throws IOException {
-        if (tfLogin.getText().equals("usuario") || psSenha.getText().equals("123")) {
+        
+        if (tfLogin.getText().equals("usuario") && psSenha.getText().equals("123")) {
             Parent principal = FXMLLoader.load(getClass().getResource("/view/FXMLPrincipal.fxml"));
             Scene scene = new Scene(principal);
             view.Principal.stage.setScene(scene);
@@ -45,11 +46,10 @@ public class FXMLLoginController implements Initializable {
             
         }else{
         JOptionPane.showMessageDialog(null, "Dados inválidos!", "Alerta", JOptionPane.WARNING_MESSAGE);
-        }
+        }      
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
 }

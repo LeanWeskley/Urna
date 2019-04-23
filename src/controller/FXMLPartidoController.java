@@ -14,7 +14,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -34,13 +33,6 @@ public class FXMLPartidoController implements Initializable {
     private TableColumn<PartidoTable, Integer> numero;
 
     @FXML
-    public void btPesquisar(){
-         String sql = "";
-         
-    
-    };
-
-    @FXML
     private TableColumn<PartidoTable, String> canditado;
 
     @FXML
@@ -49,7 +41,26 @@ public class FXMLPartidoController implements Initializable {
     @FXML
     private TableView<PartidoTable> tvChapas;
     
+     @FXML
+    void btPesquisarNome() {
+         
+    };
 
+    @FXML
+    void btPesquisarCandidato() {
+
+    };
+
+    @FXML
+    void btPesquisarFuncao() {
+
+    };
+
+    @FXML
+    void btPesquisarNumero() {
+
+    };
+    
     @FXML
     private TextField tfCandidato;
 

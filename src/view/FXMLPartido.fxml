@@ -50,8 +50,8 @@
                </font>
             </Label>
             <TextField fx:id="tfNome" layoutX="62.0" layoutY="161.0" prefHeight="33.0" prefWidth="132.0" style="-fx-border-color: #00b300;" />
-            <Button fx:id="btPesquisar" layoutX="200.0" layoutY="162.0" mnemonicParsing="false" text="Pesquisar" />
-            <Button fx:id="btPesquisar" layoutX="200.0" layoutY="203.0" mnemonicParsing="false" text="Pesquisar" />
+            <Button fx:id="btPesquisarNome" layoutX="200.0" layoutY="162.0" mnemonicParsing="false" onAction="#btPesquisarNome" text="Pesquisar" />
+            <Button fx:id="btPesquisarCandidato" layoutX="200.0" layoutY="203.0" mnemonicParsing="false" onAction="#btPesquisarCandidato" text="Pesquisar" />
             <TextField fx:id="tfCandidato" layoutX="84.0" layoutY="202.0" prefHeight="33.0" prefWidth="107.0" style="-fx-border-color: #00b300;" />
             <Label layoutX="10.0" layoutY="203.0" prefHeight="20.0" prefWidth="66.0" text="Candidato">
                <font>
@@ -64,8 +64,8 @@
                </font>
             </Label>
             <TextField fx:id="tfFuncao" layoutX="62.0" layoutY="244.0" prefHeight="33.0" prefWidth="132.0" style="-fx-border-color: #00b300;" />
-            <Button fx:id="btPesquisar" layoutX="200.0" layoutY="245.0" mnemonicParsing="false" text="Pesquisar" />
-            <Button fx:id="btPesquisar" layoutX="200.0" layoutY="283.0" mnemonicParsing="false" text="Pesquisar" />
+            <Button fx:id="btPesquisarFuncao" layoutX="200.0" layoutY="245.0" mnemonicParsing="false" onAction="#btPesquisarFuncao" text="Pesquisar" />
+            <Button fx:id="btPesquisarNumero" layoutX="200.0" layoutY="283.0" mnemonicParsing="false" onAction="#btPesquisarNumero" text="Pesquisar" />
             <TextField fx:id="tfNumero" layoutX="68.0" layoutY="282.0" prefHeight="33.0" prefWidth="125.0" style="-fx-border-color: #00b300;" />
             <Label layoutX="14.0" layoutY="284.0" text="Número">
                <font>
