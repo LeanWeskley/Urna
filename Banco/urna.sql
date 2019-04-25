@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 09-Abr-2019 às 17:00
+-- Generation Time: 25-Abr-2019 às 18:41
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -65,7 +65,11 @@ CREATE TABLE `candidatos` (
 INSERT INTO `candidatos` (`numero`, `nome`, `funcao`) VALUES
 (12, 'gbhfgh', 'Presidente'),
 (14, 'João', 'Diretor de Esportes'),
+(123, 'werfewr', 'Diretor de Esportes'),
 (149, 'kkkk', 'Diretor Sociocultural'),
+(156, 'dsfsdf', 'Diretor Sociocultural'),
+(165, 'weskley', 'Orador'),
+(168, 'weskley', 'Tesoureiro'),
 (456, 'Stefany', 'Presidente'),
 (567, 'Qualquer', 'Diretor Sociocultural');
 
@@ -100,7 +104,11 @@ INSERT INTO `candidatos_has_chapa` (`codigo`, `chapa_numero`, `candidato_numero`
 (12, 17, 12),
 (13, 17, 149),
 (14, 17, 567),
-(15, 15, 456);
+(15, 15, 456),
+(16, 14, 165),
+(17, 14, 123),
+(18, 14, 156),
+(19, 14, 168);
 
 -- --------------------------------------------------------
 
@@ -118,6 +126,7 @@ CREATE TABLE `chapa` (
 --
 
 INSERT INTO `chapa` (`numero`, `nome`) VALUES
+(14, 'BILA'),
 (15, 'STEFANY'),
 (17, 'PSL');
 
@@ -138,19 +147,15 @@ CREATE TABLE `votos` (
 --
 
 INSERT INTO `votos` (`voto`, `candidato`, `numero_candidato`) VALUES
-(1, 'Stefany', 17456),
-(2, 'Stefany', 17456),
-(3, '', 1745),
-(4, 'Stefany', 17456),
-(5, 'Stefany', 17456),
-(6, '', 0),
-(7, 'Stefany', 17456),
-(8, 'Stefany', 17456),
-(9, 'Stefany', 17456),
-(10, 'Stefany', 17456),
-(11, 'Stefany', 17456),
-(12, '', 0),
-(13, 'Stefany', 17456);
+(1, 'Stefany', 456),
+(2, 'Stefany', 456),
+(3, 'Stefany', 456),
+(4, 'Stefany', 456),
+(5, 'João', 14),
+(6, 'weskley', 168),
+(7, 'Stefany', 456),
+(8, 'Stefany', 456),
+(9, 'Stefany', 456);
 
 --
 -- Indexes for dumped tables
@@ -194,13 +199,13 @@ ALTER TABLE `votos`
 -- AUTO_INCREMENT for table `candidatos_has_chapa`
 --
 ALTER TABLE `candidatos_has_chapa`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `votos`
 --
 ALTER TABLE `votos`
-  MODIFY `voto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `voto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
