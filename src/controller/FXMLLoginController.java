@@ -41,6 +41,7 @@ public class FXMLLoginController implements Initializable {
             Parent principal = FXMLLoader.load(getClass().getResource("/view/FXMLPrincipal.fxml"));
             Scene scene = new Scene(principal);
             view.Principal.stage.setScene(scene);
+            view.Principal.stage.setTitle("Tela Principal");
             view.Principal.stage.show();
             
             
