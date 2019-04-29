@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import model.PartidoTable;
 
 public class ChapaDAO {
     Connection con = null;
+    private int tfNumeroDeletar;
     public ChapaDAO() {
         con = Conexao.abrirConexao();        
     }
@@ -34,6 +36,21 @@ public class ChapaDAO {
         } catch (Exception e) {
         }      
     
+    }     
+    public void deletar() throws Exception {
+	    Connection con = Conexao.abrirConexao();
+	    Statement st = null;
+	    ResultSet rs = null;
+	    try {
+	      st = con.createStatement();
+	      String sql = null;
+	      sql = "DELETE FROM CHAPA WHERE NUMERO = ?";
+	      st.executeUpdate(sql);
+	    }
+	    catch (SQLException e) {
+	      throw new Exception("Erro ao deletar" + e.getMessage(), e);
+	    
+	  }
     }
     public boolean setCandidatoHasChapa(int numero_chapa, int numero_canditado){
         try {
@@ -101,4 +118,19 @@ public class ChapaDAO {
         }
         return result;
     } 
+
+    public void deletar(Chapa chapa) throws Exception {
+       Connection con = Conexao.abrirConexao();
+	    try {
+	      String sql = "DELETE FROM chapa WHERE numero = ?";
+              PreparedStatement ps = con.prepareStatement(sql);
+              ps.setInt(1, chapa.getCodigo());
+              ps.execute();
+              JOptionPane.showMessageDialog(null, "Chapa deletada com sucesso");
+	    }
+	    catch (SQLException e) {
+	      throw new Exception("Erro ao deletar " + e.getErrorCode(), e);
+	    
+	  }
+    }
 }

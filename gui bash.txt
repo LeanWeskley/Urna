@@ -10,3 +10,6 @@ git commit -m "nome do commit"
 git pull --rebase
 //para enviar as modificações//
 git push -u origin master
+
+
+asdasdasd

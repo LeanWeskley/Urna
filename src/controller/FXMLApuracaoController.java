@@ -17,7 +17,7 @@ import model.Apuracao;
 /**
  * FXML Controller class
  *
- * @author Aluno
+ * @author weskley
  */
 public class FXMLApuracaoController implements Initializable {
     private VotoDAO votoDAO;

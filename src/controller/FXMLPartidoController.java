@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import model.Chapa;
 import model.PartidoTable;
 
 /**
@@ -20,6 +21,8 @@ import model.PartidoTable;
  * @author INF19
  */
 public class FXMLPartidoController implements Initializable {
+        Chapa chapa;
+        ChapaDAO chapaDAO;
 
      @FXML
     private TableColumn<PartidoTable, String> funcao;
@@ -35,38 +38,17 @@ public class FXMLPartidoController implements Initializable {
 
     @FXML
     private TableView<PartidoTable> tvChapas;
-    
-     @FXML
-    void btPesquisarNome() {
-         
-    };
-
     @FXML
-    void btPesquisarCandidato() {
-
-    };
-
-    @FXML
-    void btPesquisarFuncao() {
-
-    };
-
-    @FXML
-    void btPesquisarNumero() {
-
-    };
+    private TextField tfNumeroDeletar;
     
     @FXML
-    private TextField tfCandidato;
-
-    @FXML
-    private TextField tfNome;
-
-    @FXML
-    private TextField tfFuncao;
-
-    @FXML
-    private TextField tfNumero;
+    void btDeletar() throws Exception {
+        chapa = new Chapa();
+       chapaDAO = new ChapaDAO();
+       chapa.setCodigo(Integer.parseInt(tfNumeroDeletar.getText()));      
+       chapaDAO.deletar(chapa);
+       
+    }
     private ChapaDAO dao;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -79,6 +61,10 @@ public class FXMLPartidoController implements Initializable {
         ObservableList dados = FXCollections.observableArrayList(result);
         tvChapas.setItems(dados);
         
+    }
+
+
     }    
+
     
-}
+
