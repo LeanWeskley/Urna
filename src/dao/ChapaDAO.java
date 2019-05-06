@@ -78,6 +78,7 @@ public class ChapaDAO {
                 dados.setCanditado(rs.getString("candidatos.nome"));
                 dados.setFuncao(rs.getString("candidatos.funcao"));
                 dados.setNome(rs.getString("nome"));
+                dados.setNumeroChapa(rs.getInt("chapa.numero"));
                 dados.setNumero(rs.getInt("candidatos.numero"));
                 result.add(dados);
             }
@@ -132,5 +133,19 @@ public class ChapaDAO {
 	      throw new Exception("Erro ao deletar " + e.getErrorCode(), e);
 	    
 	  }
+    }
+    public boolean updateChapa(int newCodigo, String nome){
+        Connection con = Conexao.abrirConexao();
+        String sql = "update chapa set nome = ? where numero = ?";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nome);
+            stmt.setInt(2, newCodigo);
+            stmt.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ChapaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }

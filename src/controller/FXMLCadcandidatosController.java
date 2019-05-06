@@ -7,7 +7,10 @@ package controller;
 
 import dao.CandidatoDAO;
 import dao.ChapaDAO;
+import dao.Conexao;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -16,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javax.swing.JOptionPane;
 import model.Candidato;
 
 /**
@@ -26,7 +30,7 @@ import model.Candidato;
 public class FXMLCadcandidatosController implements Initializable { 
     Candidato candidato;
     CandidatoDAO candidatoDAO;
-    
+    Connection con = null;
 
     @FXML
     private TextField tfNome;
@@ -53,6 +57,24 @@ public class FXMLCadcandidatosController implements Initializable {
        candidato.setFuncao(cargos.getValue());
        candidato.setNumero_chapa(PartiBox.getValue());
        candidatoDAO.salavar(candidato);
+    }
+     @FXML
+    void btDeletar() {
+        try {
+            con = Conexao.abrirConexao();
+            String sql = "DELETE FROM candidatos WHERE numero = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, Integer.parseInt(tfNumero.getText()));
+            ps.execute();
+            String sql1 = "DELETE FROM votos WHERE numero_candidato = ?";
+            PreparedStatement ps1 = con.prepareStatement(sql1);
+            ps1.setInt(1, Integer.parseInt(tfNumero.getText()));
+            ps1.execute();
+                JOptionPane.showMessageDialog(null, "Candidato deletado com sucesso");
+                con.close();
+            
+        } catch (Exception e) {
+        }   
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
