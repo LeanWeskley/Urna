@@ -19,6 +19,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javax.swing.JOptionPane;
 import model.Candidato;
 
@@ -86,6 +88,18 @@ public class FXMLCadcandidatosController implements Initializable {
         ArrayList<Integer> r = chapaDAO.allChapa();
         ObservableList d =FXCollections.observableArrayList(r);
         PartiBox.setItems(d);
+        tfNumero.setOnKeyReleased((KeyEvent e)->{
+            mascaraCandidato(e);
+        });
     }    
+
+    private void mascaraCandidato(KeyEvent e) {
+         if (e.getCode() != KeyCode.BACK_SPACE || KeyCode.DELETE != e.getCode()) {
+                if (tfNumero.getLength() > 3) {
+                    tfNumero.setText(tfNumero.getText().substring(0,3));
+                }
+                    tfNumero.positionCaret(tfNumero.getLength());
+            }   
+    }
     
 }

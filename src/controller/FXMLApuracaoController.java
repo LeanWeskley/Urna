@@ -39,7 +39,7 @@ public class FXMLApuracaoController implements Initializable {
 
     @FXML
     private TableView<Apuracao> table;
-    
+
     /**
      * Initializes the controller class.
      */
@@ -56,6 +56,6 @@ public class FXMLApuracaoController implements Initializable {
             }
         };
         time.start();
-    }    
-    
+    }
+
 }

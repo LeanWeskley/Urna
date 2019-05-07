@@ -123,6 +123,13 @@ public class FXMLTeladeVotacaoController implements Initializable {
         tfCargo.setDisable(true);
         tfChapa.setDisable(true);
         tfCandidato.setDisable(true);
+        tfVotacao.setOnKeyReleased((KeyEvent e)->{
+            if (e.getCode() != KeyCode.BACK_SPACE || KeyCode.DELETE != e.getCode()) {
+                if (tfVotacao.getLength() > 5) {
+                    tfVotacao.setText(tfVotacao.getText().substring(0,5));
+                }
+            }
+        });
         pane.setOnKeyReleased((KeyEvent e)->{
             if(e.getCode() == KeyCode.NUMPAD0 ||e.getCode() == KeyCode.NUMPAD1 ||e.getCode() == KeyCode.NUMPAD2 ||e.getCode() == KeyCode.NUMPAD3 ||e.getCode() == KeyCode.NUMPAD4 ||e.getCode() == KeyCode.NUMPAD5 ||e.getCode() == KeyCode.NUMPAD6 ||e.getCode() == KeyCode.NUMPAD7 ||e.getCode() == KeyCode.NUMPAD8 ||e.getCode() == KeyCode.NUMPAD9){
                 tfVotacao.setText(tfVotacao.getText() + e.getText());
@@ -133,6 +140,7 @@ public class FXMLTeladeVotacaoController implements Initializable {
                 request();
                 }
             }
+            mascara(e);
         });
     }    
     private void request(){
@@ -158,5 +166,17 @@ public class FXMLTeladeVotacaoController implements Initializable {
                 
             }
         }
+         if (tfVotacao.getLength() > 5) {
+                    tfVotacao.setText(tfVotacao.getText().substring(0,5));
+                }
+    }
+    public void mascara(KeyEvent e){
+    
+
+            if (e.getCode() != KeyCode.BACK_SPACE || KeyCode.DELETE != e.getCode()) {
+                if (tfVotacao.getLength() > 5) {
+                    tfVotacao.setText(tfVotacao.getText().substring(0,5));
+                }
+            }   
     }
 }

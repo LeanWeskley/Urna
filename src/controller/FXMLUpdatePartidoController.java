@@ -38,7 +38,7 @@ private ChapaDAO dao;
       dados = FXMLPartidoController.dados;
       codigo.setText(String.valueOf(dados.getNumeroChapa()));
       nome.setText(dados.getNome());
-    }    
+    }
 
     @FXML
     void atualizar(ActionEvent event) {
@@ -51,5 +51,5 @@ private ChapaDAO dao;
             JOptionPane.showMessageDialog(null, "Erro");
         }
     }
-    
+
 }
