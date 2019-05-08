@@ -47,7 +47,7 @@
                </font>
             </Label>
             <TextField fx:id="tfLogin" layoutX="260.0" layoutY="200.0" style="-fx-border-color: green;" />
-            <Button layoutX="306.0" layoutY="297.0" mnemonicParsing="false" onAction="#btEntrar" prefHeight="33.0" prefWidth="63.0" style="-fx-border-color: green;" text="Entrar" />
+            <Button fx:id="btEntrar" layoutX="306.0" layoutY="297.0" mnemonicParsing="false" onAction="#btEntrar" prefHeight="33.0" prefWidth="63.0" style="-fx-border-color: green;" text="Entrar" />
             <PasswordField fx:id="psSenha" layoutX="260.0" layoutY="249.0" style="-fx-border-color: green;" />
             <Line endX="490.0" layoutX="114.0" layoutY="137.0" startX="-112.0" stroke="WHITE" strokeDashOffset="10.0" strokeMiterLimit="80.0" strokeWidth="3.0" />
             <Line endX="486.0" layoutX="117.0" layoutY="141.0" startX="-114.0" stroke="#f59118" strokeDashOffset="10.0" strokeMiterLimit="80.0" strokeWidth="6.0" />

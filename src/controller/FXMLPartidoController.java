@@ -94,11 +94,8 @@ public class FXMLPartidoController implements Initializable {
         tvChapas.setOnMouseClicked((MouseEvent e)->{
             btUpdate.setVisible(true);
         });
-        
     }
-
-
-    }    
+    }
 
     
 

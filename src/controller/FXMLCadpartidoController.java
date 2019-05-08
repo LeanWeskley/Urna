@@ -1,10 +1,14 @@
 package controller;
 
 import dao.ChapaDAO;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,6 +22,8 @@ public class FXMLCadpartidoController implements Initializable {
     private TextField txtNome;
     @FXML
     private TextField txtNumero;
+        @FXML
+    private Button btCadastrar;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txtNumero.setOnKeyReleased((KeyEvent e)->{
@@ -27,9 +33,18 @@ public class FXMLCadpartidoController implements Initializable {
                 }
             }mascaraChapa(e);
         });
+        btCadastrar.setOnKeyReleased((KeyEvent e)->{
+            if (e.getCode() == KeyCode.ENTER) {  
+                try {
+                    btCadastrar();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
     @FXML
-    void btCadastrar() {
+    void btCadastrar() throws IOException{
         chapa = new Chapa();
        chapaDAO = new ChapaDAO();
        chapa.setCodigo(Integer.parseInt(txtNumero.getText()));

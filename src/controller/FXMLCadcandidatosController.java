@@ -8,15 +8,19 @@ package controller;
 import dao.CandidatoDAO;
 import dao.ChapaDAO;
 import dao.Conexao;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -49,9 +53,15 @@ public class FXMLCadcandidatosController implements Initializable {
     void cbCargo() {
         
     }
+    
+    @FXML
+    private Button btDeletar;
+    
+        @FXML
+    private Button btCadastrar;
 
     @FXML
-    void btCadastrar() {
+    void btCadastrar() throws IOException {
         candidato = new Candidato();
        candidatoDAO = new CandidatoDAO();
        candidato.setNumero(Integer.parseInt(tfNumero.getText()));
@@ -61,7 +71,7 @@ public class FXMLCadcandidatosController implements Initializable {
        candidatoDAO.salavar(candidato);
     }
      @FXML
-    void btDeletar() {
+    void btDeletar() throws IOException{
         try {
             con = Conexao.abrirConexao();
             String sql = "DELETE FROM candidatos WHERE numero = ?";
@@ -90,6 +100,24 @@ public class FXMLCadcandidatosController implements Initializable {
         PartiBox.setItems(d);
         tfNumero.setOnKeyReleased((KeyEvent e)->{
             mascaraCandidato(e);
+        });
+        btCadastrar.setOnKeyReleased((KeyEvent e)->{
+            if (e.getCode() == KeyCode.ENTER) {  
+                try {
+                    btCadastrar();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        btDeletar.setOnKeyReleased((KeyEvent e)->{
+            if (e.getCode() == KeyCode.ENTER) {  
+                try {
+                    btDeletar();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         });
     }    
 

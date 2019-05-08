@@ -58,7 +58,7 @@
                </font>
             </Text>
             <TextField fx:id="tfNumeroDeletar" layoutX="87.0" layoutY="149.0" prefHeight="25.0" prefWidth="107.0" />
-            <Button layoutX="113.0" layoutY="188.0" mnemonicParsing="false" onAction="#btDeletar" text="Deletar" />
+            <Button fx:id="btDeletar" layoutX="113.0" layoutY="188.0" mnemonicParsing="false" onAction="#btDeletar" text="Deletar" />
             <Button fx:id="btUpdate" layoutX="52.0" layoutY="188.0" mnemonicParsing="false" onAction="#btUpdate" text="Editar" visible="false" />
          </children>
       </Pane>
