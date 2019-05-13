@@ -125,7 +125,7 @@ public class ChapaDAO {
     public void deletar(Chapa chapa) throws Exception {
        Connection con = Conexao.abrirConexao();
 	    try {
-	      String sql = "DELETE FROM chapa WHERE numero = ?";
+	      String sql = "DELETE FROM candidatos WHERE numero = ?";
               PreparedStatement ps = con.prepareStatement(sql);
               ps.setInt(1, chapa.getCodigo());
               ps.execute();

@@ -45,7 +45,7 @@ private ChapaDAO dao;
         dao = new ChapaDAO();
         boolean result = dao.updateChapa(Integer.parseInt(codigo.getText()), nome.getText());
         if (result) {
-            JOptionPane.showMessageDialog(null, "Sucesso");
+            JOptionPane.showMessageDialog(null, "Chapa editada com sucesso!");
             FXMLPartidoController.stage.close();
         }else{
             JOptionPane.showMessageDialog(null, "Erro");

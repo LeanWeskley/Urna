@@ -21,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import model.Chapa;
 import model.PartidoTable;
 
@@ -53,14 +54,19 @@ public class FXMLPartidoController implements Initializable {
     @FXML
     private TextField tfNumeroDeletar;
     protected static  PartidoTable dados;
-    
+
     @FXML
     void btDeletar() throws Exception {
         chapa = new Chapa();
        chapaDAO = new ChapaDAO();
-       chapa.setCodigo(Integer.parseInt(tfNumeroDeletar.getText()));      
+       chapa.setCodigo(tvChapas.getSelectionModel().getSelectedItem().getNumero());
        chapaDAO.deletar(chapa);
-       
+        tvChapas.setItems(null);
+        dao = new ChapaDAO();
+        ArrayList<PartidoTable> result = dao.allChapas();
+        ObservableList dados = FXCollections.observableArrayList(result);
+        tvChapas.setItems(dados);
+
     }
     protected static  Stage stage;
     @FXML
@@ -97,5 +103,5 @@ public class FXMLPartidoController implements Initializable {
     }
     }
 
-    
+
 
