@@ -55,7 +55,7 @@ public class FXMLApuracaoController implements Initializable {
                 getResult();
             }
         };
-        time.start();
+       
     }
 
 }

@@ -56,9 +56,11 @@ public class FXMLPartidoController implements Initializable {
 
     @FXML
     void btDeletar() throws Exception {
+        dados = tvChapas.getSelectionModel().getSelectedItem();
         chapa = new Chapa();
        chapaDAO = new ChapaDAO();
        chapa.setCodigo(tvChapas.getSelectionModel().getSelectedItem().getNumero());
+       
        chapaDAO.deletar(chapa);
         tvChapas.setItems(null);
         dao = new ChapaDAO();

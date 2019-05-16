@@ -3,13 +3,13 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import static view.Principal.stage;
 
 /**
@@ -20,21 +20,30 @@ import static view.Principal.stage;
 public class FXMLPrincipalController implements Initializable {
 
      @FXML
-    void miSair(ActionEvent event) {
+    void miSair() {
         stage.close();
     }
     @FXML
-    void btChapa(ActionEvent event) throws IOException {
+    void btChapa() throws IOException {
         Parent partidos = FXMLLoader.load(getClass().getResource("/view/FXMLPartido.fxml"));
         Scene scene = new Scene(partidos);
             stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("Chapas");
+            stage.setTitle("Candidatos");
             stage.show();
+    }
+    @FXML
+    void btMostrarChapa() throws IOException {
+        Parent mostrarchapa = FXMLLoader.load(getClass().getResource("/view/FXMLCandidatos.fxml"));
+        Scene scene = new Scene(mostrarchapa);
+        stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Chapas");
+        stage.show();
     }
 
         @FXML
-    void MiCadastrar(ActionEvent event) throws IOException {
+    void MiCadastrar() throws IOException {
         Parent cadpartidos = FXMLLoader.load(getClass().getResource("/view/FXMLCadpartido.fxml"));
         Scene scene = new Scene(cadpartidos);
         stage = new Stage();
@@ -43,7 +52,7 @@ public class FXMLPrincipalController implements Initializable {
             stage.show();
     }
      @FXML
-    void miCandidatos(ActionEvent event) throws IOException {
+    void miCandidatos() throws IOException {
         Parent cadCargos = FXMLLoader.load(getClass().getResource("/view/FXMLCadcandidatos.fxml"));
         Scene scene = new Scene(cadCargos);
         stage = new Stage();
@@ -53,7 +62,7 @@ public class FXMLPrincipalController implements Initializable {
     }
     
     @FXML
-    void btUrna(ActionEvent event) throws IOException {
+    void btUrna() throws IOException {
         Parent urna = FXMLLoader.load(getClass().getResource("/view/FXMLTeladeVotacao.fxml"));
         Scene scene = new Scene(urna);
         stage = new Stage();
@@ -63,7 +72,7 @@ public class FXMLPrincipalController implements Initializable {
     }
 
     @FXML
-    void btCandidato(ActionEvent event) throws IOException {
+    void btCandidato() throws IOException {
         Parent partidos = FXMLLoader.load(getClass().getResource("/view/FXMLApuracao.fxml"));
         Scene scene = new Scene(partidos);
             stage = new Stage();

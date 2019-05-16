@@ -32,8 +32,9 @@ public class ChapaDAO {
             if(ps.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, "Chapa cadastrada com sucesso");
                 con.close();
-            }else{
-            JOptionPane.showMessageDialog(null, "Chapa já cadastrada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar!");
+                con.close();
             }
         } catch (Exception e) {
         }      

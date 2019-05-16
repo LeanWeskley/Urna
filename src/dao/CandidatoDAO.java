@@ -9,11 +9,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Candidato;
+import model.PartidoTable;
 
 /**
  *
@@ -95,4 +97,40 @@ public class CandidatoDAO {
         }
         return result;
     }
+        public void deletar(Candidato candidato) throws Exception {
+	    Connection con = Conexao.abrirConexao();
+	    Statement st = null;
+	    ResultSet rs = null;
+	    try {
+	      st = con.createStatement();
+	      String sql = null;
+	      sql = "DELETE FROM CHAPA WHERE NUMERO = ?";
+	      st.executeUpdate(sql);
+	    }
+	    catch (SQLException e) {
+	      throw new Exception("Erro ao deletar" + e.getMessage(), e);
+	    
+	  }
+    }
+
+    public ArrayList<Candidato> allCandidatos() {
+        ArrayList<Candidato> result = new ArrayList<>();
+        String sql = "SELECT * FROM candidatos order by nome asc";
+        try {
+            stmt = con.prepareStatement(sql);
+            resultado = stmt.executeQuery();
+            while(resultado.next()){
+                Candidato dados = new Candidato();
+                dados.setFuncao(resultado.getString("funcao"));
+                dados.setNome(resultado.getString("nome"));
+                dados.setNumero(resultado.getInt("numero"));
+                result.add(dados);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CandidatoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
+
 }

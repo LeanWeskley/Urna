@@ -21,7 +21,7 @@
                         <Image url="@../img/chapa.png" />
                      </image>
                   </ImageView>
-                  <Text fontSmoothingType="LCD" layoutX="227.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chapas" wrappingWidth="146.0">
+                  <Text fontSmoothingType="LCD" layoutX="199.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Candidatos" wrappingWidth="202.0">
                      <fill>
                         <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                            <stops>
@@ -38,7 +38,7 @@
             </Pane>
             <TableView fx:id="tvChapas" layoutX="209.0" layoutY="126.0" prefHeight="260.0" prefWidth="377.0" style="-fx-border-color: #00b300;">
               <columns>
-                <TableColumn fx:id="nome" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="nome" prefWidth="75.0" text="Chapa" />
                   <TableColumn fx:id="numeroChapa" prefWidth="75.0" text="N° Chapa" />
                 <TableColumn fx:id="canditado" prefWidth="75.0" text="Candidato" />
                   <TableColumn fx:id="numero" prefWidth="75.0" text="Número" />
