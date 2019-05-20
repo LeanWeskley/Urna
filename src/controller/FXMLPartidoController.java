@@ -94,7 +94,7 @@ public class FXMLPartidoController implements Initializable {
         canditado.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getCanditado()));
         funcao.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getFuncao()));
         numero.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getNumero()));
-       dao = new ChapaDAO();
+        dao = new ChapaDAO();
         ArrayList<PartidoTable> result = dao.allChapas();
         ObservableList dados = FXCollections.observableArrayList(result);
         tvChapas.setItems(dados);

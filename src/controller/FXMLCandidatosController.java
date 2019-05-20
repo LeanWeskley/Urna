@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package controller;
 
 import dao.CandidatoDAO;
-import dao.ChapaDAO;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -18,7 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import model.Candidato;
 import model.PartidoTable;
 
 /**
@@ -41,7 +40,7 @@ public class FXMLCandidatosController implements Initializable {
     private TableView<PartidoTable> tvMostrarChapa;
 
     @FXML
-    private TableColumn<?, ?> nome;
+    private TableColumn<PartidoTable, String> nome;
     @FXML
     void btDeletar() {
 
@@ -51,13 +50,11 @@ public class FXMLCandidatosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         nome.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getNome()));
         numeroChapa.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getNumeroChapa()));
-       dao = new CandidatoDAO();
+        dao = new CandidatoDAO();
         ArrayList<PartidoTable> result = dao.allCandidatos();
         ObservableList dados = FXCollections.observableArrayList(result);
         tvMostrarChapa.setItems(dados);
-        tvMostrarChapa.setOnMouseClicked((MouseEvent e)->{
-        });
-    }
+        };
     }    
     
-}
+

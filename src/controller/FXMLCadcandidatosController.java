@@ -110,15 +110,6 @@ public class FXMLCadcandidatosController implements Initializable {
                 }
             }
         });
-        btDeletar.setOnKeyReleased((KeyEvent e)->{
-            if (e.getCode() == KeyCode.ENTER) {  
-                try {
-                    btDeletar();
-                } catch (IOException ex) {
-                    Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
     }    
 
     private void mascaraCandidato(KeyEvent e) {
