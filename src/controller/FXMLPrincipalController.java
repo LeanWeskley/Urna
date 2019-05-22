@@ -33,7 +33,7 @@ public class FXMLPrincipalController implements Initializable {
     }
     @FXML
     void btMostrarChapa() throws IOException {
-        Parent mostrarchapa = FXMLLoader.load(getClass().getResource("/view/FXMLCandidatos.fxml"));
+        Parent mostrarchapa = FXMLLoader.load(getClass().getResource("/view/Chapas.fxml"));
         Scene scene = new Scene(mostrarchapa);
         stage = new Stage();
         stage.setScene(scene);

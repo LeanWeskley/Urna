@@ -10,14 +10,19 @@ import dao.ChapaDAO;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import model.PartidoTable;
 
 /**
@@ -25,12 +30,8 @@ import model.PartidoTable;
  *
  * @author Aluno
  */
-public class FXMLCandidatosController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
-        @FXML
+public class ChapasController implements Initializable {
+  @FXML
     private TableColumn<PartidoTable, Integer> numeroChapa;
 
     @FXML
@@ -42,10 +43,29 @@ public class FXMLCandidatosController implements Initializable {
     @FXML
     private TableColumn<PartidoTable, String> nome;
     @FXML
-    void btDeletar() {
+    private Button delete;
 
+    @FXML
+    void btDeletar(ActionEvent event) {
+        PartidoTable dados = tvMostrarChapa.getSelectionModel().getSelectedItem();
+        chapaDAO = new ChapaDAO();
+      try {
+          chapaDAO.deletar(dados.getNumeroChapa());
+          tvMostrarChapa.getItems().remove(0, tvMostrarChapa.getItems().size());
+            chapaDAO = new ChapaDAO();
+            ArrayList<PartidoTable> result = chapaDAO.todas();
+            ObservableList dadoss = FXCollections.observableArrayList(result);
+            tvMostrarChapa.setItems(dadoss);
+          
+      } catch (Exception ex) {
+          Logger.getLogger(ChapasController.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
-    private CandidatoDAO dao;
+
+    /**
+     * Initializes the controller class.
+     */
+   private CandidatoDAO dao;
     private ChapaDAO chapaDAO;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,10 +73,12 @@ public class FXMLCandidatosController implements Initializable {
         numeroChapa.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getNumeroChapa()));
         dao = new CandidatoDAO();
         chapaDAO = new ChapaDAO();
-        ArrayList<PartidoTable> result = chapaDAO.allChapas();
+        ArrayList<PartidoTable> result = chapaDAO.todas();
         ObservableList dados = FXCollections.observableArrayList(result);
         tvMostrarChapa.setItems(dados);
-        };
-    }    
+        tvMostrarChapa.setOnMouseClicked((MouseEvent)->{
+            delete.setVisible(true);
+        });
+        }; 
     
-
+}

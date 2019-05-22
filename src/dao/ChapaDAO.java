@@ -40,15 +40,14 @@ public class ChapaDAO {
         }      
     
     }     
-    public void deletar() throws Exception {
+    public void deletar(int numero) throws Exception {
 	    Connection con = Conexao.abrirConexao();
-	    Statement st = null;
-	    ResultSet rs = null;
+	    PreparedStatement st;
 	    try {
-	      st = con.createStatement();
-	      String sql = null;
-	      sql = "DELETE FROM CHAPA WHERE NUMERO = ?";
-	      st.executeUpdate(sql);
+	      String sql = "delete from chapa where numero = ?";
+              st = con.prepareStatement(sql);
+              st.setInt(1, numero);
+	      st.execute(sql);
 	    }
 	    catch (SQLException e) {
 	      throw new Exception("Erro ao deletar" + e.getMessage(), e);
@@ -100,6 +99,24 @@ public class ChapaDAO {
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 result.add(rs.getInt("numero"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ChapaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+    public ArrayList<PartidoTable> todas(){
+        ArrayList<PartidoTable> result = new ArrayList<>();
+        String sql = "select * from chapa";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                PartidoTable dados = new PartidoTable();
+                dados.setNome(rs.getString("nome"));
+                dados.setNumeroChapa(rs.getInt("numero"));
+                result.add(dados);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ChapaDAO.class.getName()).log(Level.SEVERE, null, ex);

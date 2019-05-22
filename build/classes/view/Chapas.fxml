@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChapasController">
+   <children>
+      <Button fx:id="delete" layoutX="123.0" layoutY="204.0" mnemonicParsing="false" onAction="#btDeletar" text="Deletar" visible="false" />
+      <Pane layoutY="-1.0" prefHeight="127.0" prefWidth="610.0" style="-fx-background-color: #00b300; -fx-border-color: white; -fx-border-width: 3;">
+         <children>
+            <ImageView fitHeight="114.0" fitWidth="116.0" layoutX="243.0" layoutY="-2.0" opacity="0.88" preserveRatio="true">
+               <image>
+                  <Image url="@../img/chapa.png" />
+               </image>
+            </ImageView>
+            <Text fontSmoothingType="LCD" layoutX="236.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chapas" wrappingWidth="129.0">
+               <fill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#fafafa" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </fill>
+               <font>
+                  <Font name="Georgia Bold" size="34.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Text fontSmoothingType="LCD" layoutX="50.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Candidatos" wrappingWidth="202.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#fafafa" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+         <font>
+            <Font name="Georgia Bold" size="34.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tvMostrarChapa" layoutX="219.0" layoutY="138.0" prefHeight="260.0" prefWidth="377.0" style="-fx-border-color: #00b300;">
+         <columns>
+            <TableColumn fx:id="nome" prefWidth="281.0" text="Chapa" />
+            <TableColumn fx:id="numeroChapa" minWidth="0.0" prefWidth="94.0" text="N° Chapa" />
+         </columns>
+      </TableView>
+      <Line endX="484.0" layoutX="124.0" layoutY="124.0" startX="-112.0" stroke="WHITE" strokeDashOffset="10.0" strokeMiterLimit="80.0" strokeWidth="3.0" />
+      <Line endX="470.0" layoutX="134.0" layoutY="129.0" startX="-119.0" stroke="#f59118" strokeDashOffset="10.0" strokeMiterLimit="80.0" strokeWidth="6.0" />
+      <ImageView fitHeight="62.0" fitWidth="66.0" layoutX="20.0" layoutY="336.0" preserveRatio="true">
+         <image>
+            <Image url="@../img/ofv.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="24.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="tfNumeroDeletar" layoutX="97.0" layoutY="161.0" prefHeight="25.0" prefWidth="107.0" />
+   </children>
+</AnchorPane>
