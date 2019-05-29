@@ -67,22 +67,17 @@
                   <Line endX="482.0" layoutX="114.0" layoutY="134.0" startX="-110.0" stroke="#f59118" strokeDashOffset="10.0" strokeMiterLimit="80.0" strokeWidth="6.0" />
                </children>
             </Pane>
-            <Button layoutX="41.0" layoutY="218.0" mnemonicParsing="false" onAction="#btChapa" prefHeight="53.0" prefWidth="111.0" style="-fx-border-color: green;" text="Candidatos">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button layoutX="322.0" layoutY="218.0" mnemonicParsing="false" onAction="#btUrna" prefHeight="53.0" prefWidth="111.0" style="-fx-border-color: green;" text="Urna">
+            <Button layoutX="240.0" layoutY="217.0" mnemonicParsing="false" onAction="#btUrna" prefHeight="60.0" prefWidth="120.0" style="-fx-border-color: green;" text="Urna">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="451.0" layoutY="218.0" mnemonicParsing="false" onAction="#btCandidato" prefHeight="53.0" prefWidth="111.0" style="-fx-border-color: green;" text="Apuração">
+            <Button layoutX="383.0" layoutY="217.0" mnemonicParsing="false" onAction="#btCandidato" prefHeight="60.0" prefWidth="120.0" style="-fx-border-color: green;" text="Apuração">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="179.0" layoutY="218.0" mnemonicParsing="false" onAction="#btMostrarChapa" prefHeight="53.0" prefWidth="111.0" style="-fx-border-color: green;" text="Chapas">
+            <Button layoutX="97.0" layoutY="217.0" mnemonicParsing="false" onAction="#btMostrarChapa" prefHeight="60.0" prefWidth="120.0" style="-fx-border-color: green;" text="Chapas">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

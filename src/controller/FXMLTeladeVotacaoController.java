@@ -1,182 +1,159 @@
 package controller;
 
-import dao.CandidatoDAO;
-import dao.ChapaDAO;
+import dao.Conexao;
 import dao.VotoDAO;
 import java.net.URL;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import model.Candidato;
-import model.Voto;
+import javax.swing.JOptionPane;
+import model.Chapa;
 
-public class FXMLTeladeVotacaoController implements Initializable {
-    private Object voto;
-    @FXML
-    void bt7() {
-        tfVotacao.setText(tfVotacao.getText() +"7");
-        request();
-    }
 
-    @FXML
-    void bt8() {
-        tfVotacao.setText(tfVotacao.getText() +"8");
-        request();
-    }
-
-    @FXML
-    void bt9() {
-        tfVotacao.setText(tfVotacao.getText() +"9");
-        request();
-    }
-
-    @FXML
-    void bt6() {
-        tfVotacao.setText(tfVotacao.getText() +"6");
-        request();
-    }
-
-    @FXML
-    void bt5() {
-        tfVotacao.setText(tfVotacao.getText() +"5");
-        request();
-    }
-
-    @FXML
-    void bt4() {
-        tfVotacao.setText(tfVotacao.getText() +"4");
-        request();
-    }
-
-    @FXML
-    void bt1() {
-        tfVotacao.setText(tfVotacao.getText() +"1");
-        request();
-    }
-
-    @FXML
-    void bt2() {
-        tfVotacao.setText(tfVotacao.getText() +"2");
-        request();
-    }
-
-    @FXML
-    void bt3() {
-        tfVotacao.setText(tfVotacao.getText() +"3");
-        request();
-    }
-
-    @FXML
-    void bt0() {
-        tfVotacao.setText(tfVotacao.getText() +"0");
-        request();
-        
-    }
-     @FXML
-    void btCorrige() {
-        tfVotacao.setText("");
-        tfCandidato.setText("");
-        tfCargo.setText("");
-        tfChapa.setText("");
-    }
-    @FXML
-    void btBranco() {
-        tfVotacao.setText("00000");
-        tfCandidato.setText("");
-        tfCargo.setText("");
-        tfChapa.setText("");
-    }
-      @FXML
-    void btConfirma() {
-        VotoDAO votoDAO = new VotoDAO();
-        Voto voto = new Voto();
-       voto.setVoto(Integer.parseInt(tfVotacao.getText().substring(2, tfVotacao.getLength())));
-       voto.setCandidato(tfCandidato.getText());       
-       boolean result = votoDAO.salvar(voto);
-       if(result){
-           tfVotacao.setText("");
-           tfCargo.setText("");
-           tfChapa.setText("");
-           tfCandidato.setText("");
-       }
-    }
-    @FXML
-    private TextField tfVotacao;
+public class FXMLTeladeVotacaoController implements Initializable {   
+    @FXML    
+    private Label nome;
     @FXML
     private Pane pane;
     @FXML
-    private TextField tfCargo;
+    private TextField c1;
     @FXML
-    private TextField tfChapa;
-    @FXML
-    private TextField tfCandidato;
-    private ChapaDAO chapaDAO;
-    private CandidatoDAO candidatoDAO;
-    @Override
+    private TextField c2;    
+    String n1;
+    String n2;
+    String total;
+    
+    int branco = 0;
+
     public void initialize(URL url, ResourceBundle rb) {
-        tfVotacao.setDisable(true);
-        tfCargo.setDisable(true);
-        tfChapa.setDisable(true);
-        tfCandidato.setDisable(true);
-        tfVotacao.setOnKeyReleased((KeyEvent e)->{
-            if (e.getCode() != KeyCode.BACK_SPACE || KeyCode.DELETE != e.getCode()) {
-                if (tfVotacao.getLength() > 5) {
-                    tfVotacao.setText(tfVotacao.getText().substring(0,5));
-                }
+        //Click no primeiro campo
+        c1.requestFocus();
+        c1.setOnKeyReleased((KeyEvent e) ->{ 
+            if (e.getCode() == KeyCode.ENTER) {
+                branco();
+                System.out.println("voto em branco");
             }
+            if (c1.getLength() > 0) {
+                    n1 = c1.getText();
+                    c2.requestFocus();
+            } 
+        });
+        //Click no segundo campo
+        c2.setOnKeyReleased((KeyEvent e) ->{
+            if (c2.getLength() > 0) {
+                    n2 = c2.getText();                    
+            }
+             total = n1 + n2;
+            try {
+                if(e.getCode() == KeyCode.BACK_SPACE){
+                   limpar();
+                   c1.requestFocus();
+                }
+                if(e.getCode() != KeyCode.BACK_SPACE) {
+                    listar();
+                }
+                 if(e.getCode() == KeyCode.ENTER){
+                   if(votar()){
+                       limpar();
+                   } else{
+                        System.out.println("não votou");
+                   }           
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(FXMLTeladeVotacaoController.class.getName()).log(Level.SEVERE, null, ex);
+            }   
         });
         pane.setOnKeyReleased((KeyEvent e)->{
-            if(e.getCode() == KeyCode.NUMPAD0 ||e.getCode() == KeyCode.NUMPAD1 ||e.getCode() == KeyCode.NUMPAD2 ||e.getCode() == KeyCode.NUMPAD3 ||e.getCode() == KeyCode.NUMPAD4 ||e.getCode() == KeyCode.NUMPAD5 ||e.getCode() == KeyCode.NUMPAD6 ||e.getCode() == KeyCode.NUMPAD7 ||e.getCode() == KeyCode.NUMPAD8 ||e.getCode() == KeyCode.NUMPAD9){
-                tfVotacao.setText(tfVotacao.getText() + e.getText());
-                request();
-            }else if(e.getCode() == KeyCode.DELETE || e.getCode() == KeyCode.BACK_SPACE){
-                if(tfVotacao.getLength() - 1 >= 0){
-                tfVotacao.setText(tfVotacao.getText().substring(0, tfVotacao.getLength() -1));
-                request();
-                }
-            }
-            mascara(e);
-        });
-    }    
-    private void request(){
-        if(tfVotacao.getLength() <= 2){
-            chapaDAO = new ChapaDAO();
-            ArrayList<String> nome = chapaDAO.getChapa(Integer.parseInt(tfVotacao.getText()));
-            if(nome.size() > 0){
-            tfChapa.setText(nome.get(0));
-            }else{
-            tfChapa.setText("");
-            
-            }
-        }else if(tfVotacao.getLength() > 2){
-            candidatoDAO = new CandidatoDAO();
-            System.out.println(tfVotacao.getText().substring(2, tfVotacao.getLength()));
-            ArrayList<Candidato> result = candidatoDAO.getCandidato(Integer.parseInt(tfVotacao.getText().substring(2, tfVotacao.getLength())));
-            if(result.size() > 0){
-                tfCargo.setText(result.get(0).getFuncao());
-                tfCandidato.setText(result.get(0).getNome());
-            }else{
-                tfCargo.setText("");
-                tfCandidato.setText("");
+            if(e.getCode() == KeyCode.ENTER){
                 
+            }else if(e.getCode() == KeyCode.COMMA){
+                nome.setText("");
+                c1.setText("");
+                c2.setText("");
+                c1.requestFocus();
             }
-        }
-         if (tfVotacao.getLength() > 5) {
-                    tfVotacao.setText(tfVotacao.getText().substring(0,5));
-                }
+        }); 
     }
-    public void mascara(KeyEvent e){
+    public boolean votar(){
+        VotoDAO dao = new VotoDAO();
+        return dao.salvar(Integer.parseInt(total));
+    }
+    public void limpar(){
+        c1.setText("");
+        c2.setText("");
+        nome.setText("");
+    }
     
-
-            if (e.getCode() != KeyCode.BACK_SPACE || KeyCode.DELETE != e.getCode()) {
-                if (tfVotacao.getLength() > 5) {
-                    tfVotacao.setText(tfVotacao.getText().substring(0,5));
-                }
-            }   
+    
+    public void listar() throws SQLException{
+        VotoDAO dao = new VotoDAO();
+        Chapa chapa = new Chapa();        
+       chapa = dao.listar(Integer.parseInt(total));
+        nome.setText(chapa.getNome());
+        
     }
-}
+    public boolean branco(){
+        Connection con = Conexao.abrirConexao();
+        try {
+                    int totalBranco = 0;            
+                    String sqlBranco = "SELECT TOTAL FROM CHAPA WHERE NUMERO = 2";            
+                    PreparedStatement psBranco = con.prepareStatement(sqlBranco);
+                    ResultSet rsBranco = psBranco.executeQuery(); 
+                    if(rsBranco.next()){
+                        totalBranco = rsBranco.getInt("TOTAL");
+                        totalBranco++;
+                        try {
+                            String atualizar = "UPDATE CHAPA SET TOTAL = ? WHERE NUMERO = 2";
+                            PreparedStatement ps1 = con.prepareStatement(atualizar);
+                            ps1.setInt(1, totalBranco);
+                            ps1.executeUpdate();
+                            return true;
+                        } catch (Exception e) {
+                            return false;
+                        }     
+               
+                }
+                    
+                    
+             } catch (Exception e) {
+             }
+        return false;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /*Connection con = Conexao.abrirConexao();
+        PreparedStatement stmt;
+        String sql = "UPDATE chapa SET TOTAL = ? where numero = 2";
+        try {
+            stmt = con.prepareStatement(sql);
+            quantidade++;
+            stmt.setInt(1, quantidade); 
+            stmt.executeUpdate();
+        }catch(SQLException ex) {
+            System.out.println(ex);
+        }*/
+    }
+}    
+

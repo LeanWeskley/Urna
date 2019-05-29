@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,7 +46,7 @@ public class ChapaDAO {
 	      String sql = "delete from chapa where numero = ?";
               st = con.prepareStatement(sql);
               st.setInt(1, numero);
-	      st.execute(sql);
+	      st.executeQuery(sql);
 	    }
 	    catch (SQLException e) {
 	      throw new Exception("Erro ao deletar" + e.getMessage(), e);
@@ -167,5 +166,5 @@ public class ChapaDAO {
             Logger.getLogger(ChapaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-    }
+    }  
 }

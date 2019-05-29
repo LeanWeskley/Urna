@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25-Abr-2019 às 18:41
+-- Generation Time: 29-Maio-2019 às 21:52
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -63,15 +63,8 @@ CREATE TABLE `candidatos` (
 --
 
 INSERT INTO `candidatos` (`numero`, `nome`, `funcao`) VALUES
-(12, 'gbhfgh', 'Presidente'),
-(14, 'João', 'Diretor de Esportes'),
-(123, 'werfewr', 'Diretor de Esportes'),
-(149, 'kkkk', 'Diretor Sociocultural'),
-(156, 'dsfsdf', 'Diretor Sociocultural'),
-(165, 'weskley', 'Orador'),
-(168, 'weskley', 'Tesoureiro'),
-(456, 'Stefany', 'Presidente'),
-(567, 'Qualquer', 'Diretor Sociocultural');
+(159, 'João', 'Diretor de Marketing'),
+(456, 'joão', 'Presidente');
 
 -- --------------------------------------------------------
 
@@ -108,7 +101,47 @@ INSERT INTO `candidatos_has_chapa` (`codigo`, `chapa_numero`, `candidato_numero`
 (16, 14, 165),
 (17, 14, 123),
 (18, 14, 156),
-(19, 14, 168);
+(19, 14, 168),
+(20, 40, 456),
+(21, 40, 456),
+(22, 40, 456),
+(23, 40, 123),
+(24, 40, 456),
+(25, 40, 456),
+(26, 40, 123),
+(27, 2, 183),
+(28, 3, 158),
+(29, 75, 786),
+(30, 25, 456),
+(31, 25, 654),
+(32, 78, 897),
+(33, 13, 89),
+(34, 77, 786),
+(35, 77, 786),
+(36, 77, 786),
+(37, 77, 786),
+(38, 77, 786),
+(39, 77, 786),
+(40, 77, 786),
+(41, 77, 786),
+(42, 77, 782),
+(43, 85, 149),
+(44, 10, 345),
+(45, 2, 123),
+(46, 2, 123),
+(47, 2, 123),
+(48, 2, 123),
+(49, 2, 123),
+(50, 2, 123),
+(51, 2, 123),
+(52, 2, 123),
+(53, 2, 741),
+(54, 13, 13),
+(55, 75, 721),
+(56, 12, 456),
+(57, 12, 789),
+(58, 12, 159),
+(59, 45, 456);
 
 -- --------------------------------------------------------
 
@@ -118,17 +151,19 @@ INSERT INTO `candidatos_has_chapa` (`codigo`, `chapa_numero`, `candidato_numero`
 
 CREATE TABLE `chapa` (
   `numero` int(11) NOT NULL,
-  `nome` varchar(45) NOT NULL
+  `nome` varchar(45) NOT NULL,
+  `TOTAL` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `chapa`
 --
 
-INSERT INTO `chapa` (`numero`, `nome`) VALUES
-(14, 'BILA'),
-(15, 'STEFANY'),
-(17, 'PSL');
+INSERT INTO `chapa` (`numero`, `nome`, `TOTAL`) VALUES
+(1, 'NULO', 12),
+(2, 'BRANCO', 6),
+(45, 'BOLA', 10),
+(76, 'DILO', 12);
 
 -- --------------------------------------------------------
 
@@ -147,15 +182,11 @@ CREATE TABLE `votos` (
 --
 
 INSERT INTO `votos` (`voto`, `candidato`, `numero_candidato`) VALUES
-(1, 'Stefany', 456),
-(2, 'Stefany', 456),
-(3, 'Stefany', 456),
-(4, 'Stefany', 456),
-(5, 'João', 14),
-(6, 'weskley', 168),
-(7, 'Stefany', 456),
-(8, 'Stefany', 456),
-(9, 'Stefany', 456);
+(4, 'João', 123),
+(6, '', 0),
+(8, '', 0),
+(9, 'Rogéri', 345),
+(10, 'Weskley', 789);
 
 --
 -- Indexes for dumped tables
@@ -199,13 +230,13 @@ ALTER TABLE `votos`
 -- AUTO_INCREMENT for table `candidatos_has_chapa`
 --
 ALTER TABLE `candidatos_has_chapa`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `votos`
 --
 ALTER TABLE `votos`
-  MODIFY `voto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `voto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

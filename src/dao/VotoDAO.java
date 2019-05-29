@@ -12,9 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import model.Apuracao;
 import model.Candidato;
+import model.Chapa;
 import model.Voto;
 
 /**
@@ -26,20 +26,82 @@ public class VotoDAO {
     public VotoDAO() {
         con = Conexao.abrirConexao();        
     }
-    public boolean salvar(Voto voto){
-        try {
-            String sql = "INSERT INTO VOTOS(numero_candidato, CANDIDATO) VALUES (?, ?)";
+    public boolean salvar(int numero){
+        try {          
+            int total = 0;            
+            String sql = "SELECT TOTAL FROM CHAPA WHERE NUMERO = "+ numero;            
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, voto.getVoto());
-            ps.setString(2, voto.getCandidato());
-            if(ps.executeUpdate() > 0){
-                JOptionPane.showMessageDialog(null, "Votação concluida, próximo");
-                con.close();
+            ResultSet rs = ps.executeQuery();           
+            if(rs.next()){   
+                total = rs.getInt("TOTAL");
+                total++;        
+                
+                try {
+                    String atualizar = "UPDATE CHAPA SET TOTAL = ? WHERE NUMERO = ?";
+                    PreparedStatement ps1 = con.prepareStatement(atualizar);
+                    ps1.setInt(1, total);
+                    ps1.setInt(2, numero);
+                    ps1.executeUpdate();
+                      return true;
+                } catch (Exception e) {
+                    return false;
+                }                
+               
+               
+            }else{
+                try {
+                    int totalNulo = 0;            
+                    String sqlNulo = "SELECT TOTAL FROM CHAPA WHERE NUMERO = 1";            
+                    PreparedStatement psNulo = con.prepareStatement(sqlNulo);
+                    ResultSet rsNulo = psNulo.executeQuery(); 
+                    if(rsNulo.next()){
+                        totalNulo = rsNulo.getInt("TOTAL");
+                        totalNulo++;
+                        try {
+                            String atualizar = "UPDATE CHAPA SET TOTAL = ? WHERE NUMERO = 1";
+                            PreparedStatement ps1 = con.prepareStatement(atualizar);
+                            ps1.setInt(1, totalNulo);
+                            ps1.executeUpdate();
+                            return true;
+                        } catch (Exception e) {
+                            return false;
+                        }     
+               
+                }
+                    
+                    
+             } catch (Exception e) {
+             }
                 return true;
             }
+            
         } catch (Exception e) {
-        }      
+        }    
         return false;
+    }
+    public Chapa listar(int numero){
+        Chapa chapa = new Chapa();
+        try {
+            try (
+                Connection con = Conexao.abrirConexao()) {
+                String sql = "SELECT NOME FROM CHAPA WHERE NUMERO = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, numero);
+                ResultSet rs =  ps.executeQuery();                
+                     while(rs.next()){   
+                            chapa.setNome(rs.getString("nome"));                         
+                          System.out.println(chapa.getNome());
+                          return chapa;
+                        }
+                
+                chapa.setNome("NULO");
+                return chapa;
+               
+               
+            }            
+        } catch (Exception e) {
+            return chapa;
+        }   
     
     }
     public ArrayList<Apuracao> getResult(){
@@ -74,6 +136,21 @@ public class VotoDAO {
             return result;
         }
         return null;
+    }
+    public boolean branco(int quantidade){
+        Connection con = Conexao.abrirConexao();
+        PreparedStatement stmt;
+        String sql = "UPDATE chapa SET TOTAL = ? where numero = ?";
+        
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, quantidade);
+            stmt.setInt(2, 2);
+            stmt.executeUpdate();
+        }catch(SQLException ex) {
+            System.out.println(ex);
+        }
+        return false;
     }
 }
 

@@ -20,7 +20,7 @@ public class Principal extends Application {
     public static Stage stage;
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent tela = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
+        Parent tela = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
         Scene scene = new Scene(tela);
         primaryStage.setTitle("Tela de Login");
         primaryStage.setScene(scene);
