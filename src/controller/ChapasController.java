@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.CandidatoDAO;
+
 import dao.ChapaDAO;
 import java.net.URL;
 import java.util.ArrayList;
@@ -50,6 +50,7 @@ public class ChapasController implements Initializable {
         PartidoTable dados = tvMostrarChapa.getSelectionModel().getSelectedItem();
         chapaDAO = new ChapaDAO();
       try {
+          System.out.println(dados.getNumeroChapa());
           chapaDAO.deletar(dados.getNumeroChapa());
           tvMostrarChapa.getItems().remove(0, tvMostrarChapa.getItems().size());
             chapaDAO = new ChapaDAO();
@@ -65,13 +66,11 @@ public class ChapasController implements Initializable {
     /**
      * Initializes the controller class.
      */
-   private CandidatoDAO dao;
     private ChapaDAO chapaDAO;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nome.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getNome()));
         numeroChapa.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getNumeroChapa()));
-        dao = new CandidatoDAO();
         chapaDAO = new ChapaDAO();
         ArrayList<PartidoTable> result = chapaDAO.todas();
         ObservableList dados = FXCollections.observableArrayList(result);

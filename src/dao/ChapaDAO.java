@@ -40,32 +40,15 @@ public class ChapaDAO {
     
     }     
     public void deletar(int numero) throws Exception {
-	    Connection con = Conexao.abrirConexao();
 	    PreparedStatement st;
 	    try {
-	      String sql = "delete from chapa where numero = ?";
+	      String sql = "DELETE FROM chapa WHERE numero = "+numero;
               st = con.prepareStatement(sql);
-              st.setInt(1, numero);
-	      st.executeQuery(sql);
+	      st.execute(sql);
 	    }
 	    catch (SQLException e) {
-	      throw new Exception("Erro ao deletar" + e.getMessage(), e);
-	    
+	      throw new Exception("Erro ao deletar " + e.getMessage(), e);
 	  }
-    }
-    public boolean setCandidatoHasChapa(int numero_chapa, int numero_canditado){
-        try {
-            String sql = "INSERT INTO candidatos_has_chapa(candidato_numero, chapa_numero) VALUES (?, ?)";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, numero_canditado);
-            ps.setInt(2, numero_chapa);
-            ps.execute();
-                con.close();
-            return true;
-        } catch (Exception e) {
-            System.out.println(e.getCause());
-        } 
-        return false;
     }
     public ArrayList<PartidoTable> allChapas(){
         ArrayList<PartidoTable> result = new ArrayList<>();

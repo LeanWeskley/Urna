@@ -50,6 +50,8 @@ public class FXMLCadpartidoController implements Initializable {
        chapa.setCodigo(Integer.parseInt(txtNumero.getText()));
        chapa.setNome(txtNome.getText());       
        chapaDAO.salavar(chapa);
+       txtNome.setText("");
+       txtNumero.setText("");
     }
      public void mascaraChapa(KeyEvent e){
             if (e.getCode() != KeyCode.BACK_SPACE || KeyCode.DELETE != e.getCode()) {

@@ -61,11 +61,5 @@
             <Image url="@../img/ofv.png" />
          </image>
       </ImageView>
-      <Text layoutX="24.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número:">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <TextField fx:id="tfNumeroDeletar" layoutX="97.0" layoutY="161.0" prefHeight="25.0" prefWidth="107.0" />
    </children>
 </AnchorPane>

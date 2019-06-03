@@ -24,24 +24,24 @@ public class FXMLPrincipalController implements Initializable {
     }
     @FXML
     void btChapa() throws IOException {
-        Parent partidos = FXMLLoader.load(getClass().getResource("/view/FXMLPartido.fxml"));
-        Scene scene = new Scene(partidos);
-            stage = new Stage();
-            stage.setScene(scene);
+       Parent partidos = FXMLLoader.load(getClass().getResource("/view/FXMLPartido.fxml"));
+       Scene scene = new Scene(partidos);
+           stage = new Stage();
+           stage.setScene(scene);
             stage.setTitle("Candidatos");
-            stage.show();
-    }
+           stage.show();
+   }
     @FXML
     void btMostrarChapa() throws IOException {
-        Parent mostrarchapa = FXMLLoader.load(getClass().getResource("/view/Chapas.fxml"));
-        Scene scene = new Scene(mostrarchapa);
-        stage = new Stage();
-        stage.setScene(scene);
+       Parent mostrarchapa = FXMLLoader.load(getClass().getResource("/view/Chapas.fxml"));
+       Scene scene = new Scene(mostrarchapa);
+       stage = new Stage();
+      stage.setScene(scene);
         stage.setTitle("Chapas");
         stage.show();
     }
 
-        @FXML
+       @FXML
     void MiCadastrar() throws IOException {
         Parent cadpartidos = FXMLLoader.load(getClass().getResource("/view/FXMLCadpartido.fxml"));
         Scene scene = new Scene(cadpartidos);
@@ -49,17 +49,7 @@ public class FXMLPrincipalController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("Cadastro de Chapa"); 
             stage.show();
-    }
-     @FXML
-    void miCandidatos() throws IOException {
-        Parent cadCargos = FXMLLoader.load(getClass().getResource("/view/FXMLCadcandidatos.fxml"));
-        Scene scene = new Scene(cadCargos);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Cadastro de Candidatos");
-        stage.show();
-    }
-    
+    } 
     @FXML
     void btUrna() throws IOException {
         Parent urna = FXMLLoader.load(getClass().getResource("/view/FXMLTeladeVotacao.fxml"));

@@ -5,21 +5,9 @@
  */
 package model;
 
-/**
- *
- * @author Aluno
- */
+
 public class Apuracao {
-    private Candidato candidato;
     private Voto voto;
-
-    public Candidato getCandidato() {
-        return candidato;
-    }
-
-    public void setCandidato(Candidato candidato) {
-        this.candidato = candidato;
-    }
 
     public Voto getVoto() {
         return voto;

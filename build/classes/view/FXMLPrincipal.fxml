@@ -34,7 +34,6 @@
                       <Menu mnemonicParsing="false" text="Cadastros">
                         <items>
                           <MenuItem mnemonicParsing="false" onAction="#MiCadastrar" text="Chapa" />
-                              <MenuItem mnemonicParsing="false" onAction="#miCandidatos" text="Candidatos" />
                         </items>
                       </Menu>
                     </menus>

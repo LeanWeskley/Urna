@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Apuracao;
-import model.Candidato;
 import model.Chapa;
 import model.Voto;
 
@@ -104,9 +103,7 @@ public class VotoDAO {
         }   
     
     }
-    public ArrayList<Apuracao> getResult(){
-        CandidatoDAO candidatoDAO = new CandidatoDAO();
-        ArrayList<Candidato> candidatos = candidatoDAO.allCandidato();
+   /* public ArrayList<Apuracao> getResult(){
         if(candidatos.size() > 0){
              ArrayList<Apuracao> result = new ArrayList<>();
              for(Candidato dados : candidatos){
@@ -118,14 +115,9 @@ public class VotoDAO {
                      ResultSet rs = stmt.executeQuery();
                      while(rs.next()){
                          Voto votos = new Voto();
-                         Candidato candidato = new Candidato();
-                         candidato.setFuncao(dados.getFuncao());
-                         candidato.setNome(dados.getNome());
-                         candidato.setNumero(dados.getNumero());
                          System.out.println(rs.getString("total"));
                          votos.setVoto(rs.getInt("total"));
                          Apuracao apuracao = new Apuracao();
-                         apuracao.setCandidato(candidato);
                          apuracao.setVoto(votos);
                          result.add(apuracao);
                      }
@@ -136,7 +128,8 @@ public class VotoDAO {
             return result;
         }
         return null;
-    }
+    }*/
+    
     public boolean branco(int quantidade){
         Connection con = Conexao.abrirConexao();
         PreparedStatement stmt;
