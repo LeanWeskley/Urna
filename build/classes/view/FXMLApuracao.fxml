@@ -38,9 +38,8 @@
             </Pane>
             <TableView fx:id="table" layoutX="152.0" layoutY="136.0" prefHeight="250.0" prefWidth="296.0">
               <columns>
-                <TableColumn fx:id="nome" prefWidth="130.0" text="Nome" />
-                <TableColumn fx:id="funcao" prefWidth="113.0" text="Função" />
-                  <TableColumn fx:id="votos" prefWidth="52.0" text="Votos" />
+                <TableColumn fx:id="nome" prefWidth="251.0" text="Nome" />
+                  <TableColumn fx:id="votos" minWidth="0.0" prefWidth="44.0" text="Votos" />
               </columns>
             </TableView>
          </children>

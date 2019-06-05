@@ -1,0 +1,1 @@
+update  chapa set total = 0 WHERE NUMERO between 1 and 100;

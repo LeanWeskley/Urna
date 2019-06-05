@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -18,15 +19,30 @@ import javafx.stage.Stage;
  */
 public class Principal extends Application {
     public static Stage stage;
+    public static Stage voto;
+    public static Scene sceneVoto;
+    public static Scene sceneTelaVoto;
+    
+    
     @Override
     public void start(Stage primaryStage) throws IOException {
+        Parent telaVoto = FXMLLoader.load(getClass().getResource("/view/FXMLTeladeVotacao.fxml"));
+        Parent urna = FXMLLoader.load(getClass().getResource("FXMLFim.fxml"));
         Parent tela = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
         Scene scene = new Scene(tela);
+        sceneVoto = new Scene(urna);
+        sceneTelaVoto = new Scene(telaVoto);
         primaryStage.setTitle("Tela de Login");
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);
         stage = primaryStage;
         primaryStage.show();
+        
+        
+        criarPalco();
+        
+        
+        
     }
 
     /**
@@ -35,5 +51,24 @@ public class Principal extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    private static void criarPalco() {        
+        voto = new Stage();
+        voto.setScene(sceneVoto);
+        voto.setTitle("Tela de Votação");
+        voto.setResizable(false);        
+        voto.show();
+        
+    }
+    
+    public static void trocaVoto(){        
+        voto.setScene(sceneTelaVoto);
+        
+    }
+    
+    public static void trocaVotoFim(){        
+        voto.setScene(sceneVoto);        
+    }
+    
     
 }

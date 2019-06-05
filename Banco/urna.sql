@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 29-Maio-2019 às 21:52
+-- Generation Time: 05-Jun-2019 às 20:06
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -160,10 +160,12 @@ CREATE TABLE `chapa` (
 --
 
 INSERT INTO `chapa` (`numero`, `nome`, `TOTAL`) VALUES
-(1, 'NULO', 12),
-(2, 'BRANCO', 6),
-(45, 'BOLA', 10),
-(76, 'DILO', 12);
+(1, 'NULO', 0),
+(2, 'BRANCO', 0),
+(11, 'UEP - UNIÃO ESTUDANTIL PROFISSIONAL', 0),
+(21, 'F.A.C.E - FAZENDO ACONTECER COM EFICIÊNCIA', 0),
+(34, 'EPRS - ESTUDANDES EM PROL DO SUCESSO', 0),
+(81, 'ADE - ALIANÇA DEMOCRÁTICA ESTUDANTIL', 0);
 
 -- --------------------------------------------------------
 
@@ -176,17 +178,6 @@ CREATE TABLE `votos` (
   `candidato` varchar(45) NOT NULL,
   `numero_candidato` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `votos`
---
-
-INSERT INTO `votos` (`voto`, `candidato`, `numero_candidato`) VALUES
-(4, 'João', 123),
-(6, '', 0),
-(8, '', 0),
-(9, 'Rogéri', 345),
-(10, 'Weskley', 789);
 
 --
 -- Indexes for dumped tables
@@ -236,7 +227,7 @@ ALTER TABLE `candidatos_has_chapa`
 -- AUTO_INCREMENT for table `votos`
 --
 ALTER TABLE `votos`
-  MODIFY `voto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `voto` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

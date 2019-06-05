@@ -103,15 +103,14 @@ public class VotoDAO {
         }   
     
     }
-   /* public ArrayList<Apuracao> getResult(){
-        if(candidatos.size() > 0){
+    public ArrayList<Apuracao> getResult(){
+       /* if(chapa.size() > 0){
              ArrayList<Apuracao> result = new ArrayList<>();
-             for(Candidato dados : candidatos){
-                 System.out.println();
+             for(Chapa dados : chapa){
                  String sql = "select count(voto) as total, candidato from votos where numero_candidato = ?";
                  try {
                      PreparedStatement stmt = con.prepareStatement(sql);
-                     stmt.setInt(1, dados.getNumero());
+                     stmt.setInt(1, dados.getCodigo());
                      ResultSet rs = stmt.executeQuery();
                      while(rs.next()){
                          Voto votos = new Voto();
@@ -126,9 +125,9 @@ public class VotoDAO {
                  }
              }
             return result;
-        }
+        }*/
         return null;
-    }*/
+    }
     
     public boolean branco(int quantidade){
         Connection con = Conexao.abrirConexao();

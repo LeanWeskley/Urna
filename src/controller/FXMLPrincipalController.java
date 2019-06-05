@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.Principal;
 import static view.Principal.stage;
 
 /**
@@ -52,12 +53,13 @@ public class FXMLPrincipalController implements Initializable {
     } 
     @FXML
     void btUrna() throws IOException {
-        Parent urna = FXMLLoader.load(getClass().getResource("/view/FXMLTeladeVotacao.fxml"));
+        Principal.trocaVoto();
+        /*Parent urna = FXMLLoader.load(getClass().getResource("/view/FXMLTeladeVotacao.fxml"));
         Scene scene = new Scene(urna);
         stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Tela de Votação");
-        stage.show();
+        stage.show();*/
     }
 
     @FXML

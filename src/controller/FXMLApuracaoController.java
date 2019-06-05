@@ -23,9 +23,9 @@ public class FXMLApuracaoController implements Initializable {
     private VotoDAO votoDAO;
     private void getResult(){
         votoDAO = new VotoDAO();
-        //ArrayList<Apuracao> dados = votoDAO.getResult();
-        //ObservableList model = FXCollections.observableArrayList(dados);
-        //table.setItems(model);
+        ArrayList<Apuracao> dados = votoDAO.getResult();
+        ObservableList model = FXCollections.observableArrayList(dados);
+        table.setItems(model);
         table.getSortOrder().add(votos);
     }
     @FXML
@@ -45,8 +45,7 @@ public class FXMLApuracaoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*funcao.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getChapa().getFuncao()));
-        nome.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getChapa.getNome()));*/
+       // nome.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getChapa.getNome()));
         votos.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getVoto().getVoto()));
         AnimationTimer time = new AnimationTimer() {
 

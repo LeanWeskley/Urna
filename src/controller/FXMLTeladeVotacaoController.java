@@ -1,7 +1,12 @@
 package controller;
+import java.io.*;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.*;
+
 
 import dao.Conexao;
 import dao.VotoDAO;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,14 +16,18 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javax.swing.JOptionPane;
 import model.Chapa;
+import view.Principal;
+import static view.Principal.stage;
 
 
 public class FXMLTeladeVotacaoController implements Initializable {   
@@ -40,9 +49,14 @@ public class FXMLTeladeVotacaoController implements Initializable {
         //Click no primeiro campo
         c1.requestFocus();
         c1.setOnKeyReleased((KeyEvent e) ->{ 
-            if (e.getCode() == KeyCode.ENTER) {
-                branco();
-                System.out.println("voto em branco");
+            if (e.getCode() == KeyCode.ENTER) {               
+                    branco();
+                     som();
+                    Principal.trocaVotoFim();
+                    
+                    
+                    c1.requestFocus();
+                
             }
             if (c1.getLength() > 0) {
                     n1 = c1.getText();
@@ -66,13 +80,18 @@ public class FXMLTeladeVotacaoController implements Initializable {
                  if(e.getCode() == KeyCode.ENTER){
                    if(votar()){
                        limpar();
+                       som();
+                       Principal.trocaVotoFim();
+                       
+                       
+                       c1.requestFocus();
                    } else{
                         System.out.println("não votou");
                    }           
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(FXMLTeladeVotacaoController.class.getName()).log(Level.SEVERE, null, ex);
-            }   
+            }  
         });
         pane.setOnKeyReleased((KeyEvent e)->{
             if(e.getCode() == KeyCode.ENTER){
@@ -106,7 +125,7 @@ public class FXMLTeladeVotacaoController implements Initializable {
     public boolean branco(){
         Connection con = Conexao.abrirConexao();
         try {
-                    int totalBranco = 0;            
+                    int totalBranco = 0;
                     String sqlBranco = "SELECT TOTAL FROM CHAPA WHERE NUMERO = 2";            
                     PreparedStatement psBranco = con.prepareStatement(sqlBranco);
                     ResultSet rsBranco = psBranco.executeQuery(); 
@@ -154,6 +173,23 @@ public class FXMLTeladeVotacaoController implements Initializable {
         }catch(SQLException ex) {
             System.out.println(ex);
         }*/
+        
+        
+        
+    }
+    public void som(){
+        System.out.println("Chamou o som");
+        try {
+            File file = new File("src/util/som.mp3");
+            FileInputStream fs = new FileInputStream(file);
+            BufferedInputStream bf = new BufferedInputStream(fs);
+            try {
+                Player player = new Player(bf);
+                player.play();
+            } catch (Exception e) {
+            }
+        } catch (Exception e) {
+        }
     }
 }    
 
