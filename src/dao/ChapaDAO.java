@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -149,5 +150,28 @@ public class ChapaDAO {
             Logger.getLogger(ChapaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-    }  
+    }
+    
+    
+    public List<Chapa> listarAll(){
+        List<Chapa> lista = new ArrayList<>();        
+        try {
+            try (
+                Connection con = Conexao.abrirConexao()) {
+                String sql = "SELECT * FROM CHAPA";                
+                PreparedStatement ps = con.prepareStatement(sql);                
+                ResultSet rs =  ps.executeQuery();               
+                     while(rs.next()){
+                         Chapa chapa = new Chapa();
+                         chapa.setCodigo(rs.getInt("numero"));
+                         chapa.setNome(rs.getString("nome"));
+                         chapa.setTotal(rs.getInt("total"));                         
+                         lista.add(chapa);                                                   
+                     }  
+                     return lista;
+            }            
+        } catch (Exception e) {
+            return null;
+        }    
+    }
 }

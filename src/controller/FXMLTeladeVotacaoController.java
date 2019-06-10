@@ -1,12 +1,10 @@
 package controller;
 import java.io.*;
-import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.*;
 
 
 import dao.Conexao;
 import dao.VotoDAO;
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,10 +14,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -27,7 +22,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import model.Chapa;
 import view.Principal;
-import static view.Principal.stage;
 
 
 public class FXMLTeladeVotacaoController implements Initializable {   
@@ -44,50 +38,62 @@ public class FXMLTeladeVotacaoController implements Initializable {
     String total;
     
     int branco = 0;
-
+               
     public void initialize(URL url, ResourceBundle rb) {
         //Click no primeiro campo
-        c1.requestFocus();
+        c1.requestFocus(); 
         c1.setOnKeyReleased((KeyEvent e) ->{ 
-            if (e.getCode() == KeyCode.ENTER) {               
-                    branco();
-                     som();
+            /*if (e.getCode() == KeyCode.ENTER) {
+                    //branco();
+                    som();
                     Principal.trocaVotoFim();
-                    
-                    
                     c1.requestFocus();
-                
+            }*/
+            if (e.getCode() == KeyCode.DECIMAL) {
+                        limpar();
+                        c1.setText("0");
+                         c2.setText("0");
+                            nome.setText("BRANCO");
+                         
+                         n1 = c1.getText();
+                         n2 = (c2.getText() + "2");
+                         total = (n1 + n2);
             }
+            
             if (c1.getLength() > 0) {
                     n1 = c1.getText();
                     c2.requestFocus();
-            } 
+            }
+            
         });
         //Click no segundo campo
         c2.setOnKeyReleased((KeyEvent e) ->{
+                    c2.setText(c2.getText().replace(",",""));
+                    System.out.println(e.getCode());
+                    c2.positionCaret(c2.getLength());
             if (c2.getLength() > 0) {
                     n2 = c2.getText();                    
             }
              total = n1 + n2;
             try {
-                if(e.getCode() == KeyCode.BACK_SPACE){
+                if(e.getCode() == KeyCode.BACK_SPACE/* || e.getCode() == KeyCode.DECIMAL*/){
                    limpar();
                    c1.requestFocus();
                 }
-                if(e.getCode() != KeyCode.BACK_SPACE) {
+                if(e.getCode() != KeyCode.BACK_SPACE/* || e.getCode() == KeyCode.DECIMAL*/) {
+                    if(!total.equals("00")){
                     listar();
+                    }
                 }
-                 if(e.getCode() == KeyCode.ENTER){
+                 if(e.getCode() == KeyCode.ENTER){                     
                    if(votar()){
                        limpar();
                        som();
                        Principal.trocaVotoFim();
-                       
-                       
                        c1.requestFocus();
                    } else{
                         System.out.println("não votou");
-                   }           
+                   }                   
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(FXMLTeladeVotacaoController.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,7 +102,7 @@ public class FXMLTeladeVotacaoController implements Initializable {
         pane.setOnKeyReleased((KeyEvent e)->{
             if(e.getCode() == KeyCode.ENTER){
                 
-            }else if(e.getCode() == KeyCode.COMMA){
+            }else if(e.getCode() == KeyCode.BACK_SPACE){
                 nome.setText("");
                 c1.setText("");
                 c2.setText("");
@@ -113,22 +119,25 @@ public class FXMLTeladeVotacaoController implements Initializable {
         c2.setText("");
         nome.setText("");
     }
-    
-    
     public void listar() throws SQLException{
+       
         VotoDAO dao = new VotoDAO();
         Chapa chapa = new Chapa();        
-       chapa = dao.listar(Integer.parseInt(total));
-        nome.setText(chapa.getNome());
+        chapa = dao.listar(Integer.parseInt(total));
+        c2.positionCaret(c2.getLength());
+            nome.setText(chapa.getNome());
+        
+        
         
     }
     public boolean branco(){
+        VotoDAO dao = new VotoDAO();
         Connection con = Conexao.abrirConexao();
         try {
                     int totalBranco = 0;
                     String sqlBranco = "SELECT TOTAL FROM CHAPA WHERE NUMERO = 2";            
                     PreparedStatement psBranco = con.prepareStatement(sqlBranco);
-                    ResultSet rsBranco = psBranco.executeQuery(); 
+                    ResultSet rsBranco = psBranco.executeQuery();
                     if(rsBranco.next()){
                         totalBranco = rsBranco.getInt("TOTAL");
                         totalBranco++;
@@ -140,42 +149,12 @@ public class FXMLTeladeVotacaoController implements Initializable {
                             return true;
                         } catch (Exception e) {
                             return false;
-                        }     
-               
+                        }
                 }
-                    
-                    
              } catch (Exception e) {
              }
-        return false;
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /*Connection con = Conexao.abrirConexao();
-        PreparedStatement stmt;
-        String sql = "UPDATE chapa SET TOTAL = ? where numero = 2";
-        try {
-            stmt = con.prepareStatement(sql);
-            quantidade++;
-            stmt.setInt(1, quantidade); 
-            stmt.executeUpdate();
-        }catch(SQLException ex) {
-            System.out.println(ex);
-        }*/
-        
-        
-        
+        return false;   
     }
     public void som(){
         System.out.println("Chamou o som");

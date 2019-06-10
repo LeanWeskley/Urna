@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
 
 /**
  *
@@ -22,6 +22,7 @@ public class Principal extends Application {
     public static Stage voto;
     public static Scene sceneVoto;
     public static Scene sceneTelaVoto;
+    public static Scene sceneApuracao;
     
     
     @Override
@@ -29,9 +30,11 @@ public class Principal extends Application {
         Parent telaVoto = FXMLLoader.load(getClass().getResource("/view/FXMLTeladeVotacao.fxml"));
         Parent urna = FXMLLoader.load(getClass().getResource("FXMLFim.fxml"));
         Parent tela = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
+        Parent apuracao = FXMLLoader.load(getClass().getResource("FXMLApuracao.fxml"));
         Scene scene = new Scene(tela);
         sceneVoto = new Scene(urna);
         sceneTelaVoto = new Scene(telaVoto);
+        sceneApuracao = new Scene(apuracao);
         primaryStage.setTitle("Tela de Login");
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);
@@ -68,6 +71,10 @@ public class Principal extends Application {
     
     public static void trocaVotoFim(){        
         voto.setScene(sceneVoto);        
+    }
+    
+    public static void trocaApuracao(){        
+        stage.setScene(sceneApuracao);
     }
     
     

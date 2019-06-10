@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import java.sql.Connection;
@@ -10,11 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import model.Apuracao;
 import model.Chapa;
-import model.Voto;
 
 /**
  *
@@ -26,6 +19,9 @@ public class VotoDAO {
         con = Conexao.abrirConexao();        
     }
     public boolean salvar(int numero){
+        if(numero == 0){
+            numero = 2;
+        }        
         try {          
             int total = 0;            
             String sql = "SELECT TOTAL FROM CHAPA WHERE NUMERO = "+ numero;            
@@ -33,7 +29,7 @@ public class VotoDAO {
             ResultSet rs = ps.executeQuery();           
             if(rs.next()){   
                 total = rs.getInt("TOTAL");
-                total++;        
+                total++;  
                 
                 try {
                     String atualizar = "UPDATE CHAPA SET TOTAL = ? WHERE NUMERO = ?";
@@ -44,10 +40,9 @@ public class VotoDAO {
                       return true;
                 } catch (Exception e) {
                     return false;
-                }                
+                }              
                
-               
-            }else{
+            }else {
                 try {
                     int totalNulo = 0;            
                     String sqlNulo = "SELECT TOTAL FROM CHAPA WHERE NUMERO = 1";            
@@ -64,21 +59,18 @@ public class VotoDAO {
                             return true;
                         } catch (Exception e) {
                             return false;
-                        }     
-               
-                }
-                    
+                        }             
+                }                    
                     
              } catch (Exception e) {
              }
                 return true;
-            }
-            
+            }            
         } catch (Exception e) {
         }    
         return false;
     }
-    public Chapa listar(int numero){
+    public Chapa listar(int numero){        
         Chapa chapa = new Chapa();
         try {
             try (
@@ -100,8 +92,7 @@ public class VotoDAO {
             }            
         } catch (Exception e) {
             return chapa;
-        }   
-    
+        }    
     }
     public ArrayList<Apuracao> getResult(){
        /* if(chapa.size() > 0){
@@ -136,6 +127,8 @@ public class VotoDAO {
         
         try {
             stmt = con.prepareStatement(sql);
+            System.out.println("entra");
+            quantidade++;
             stmt.setInt(1, quantidade);
             stmt.setInt(2, 2);
             stmt.executeUpdate();
@@ -143,6 +136,7 @@ public class VotoDAO {
             System.out.println(ex);
         }
         return false;
-    }
+    }   
+    
 }
 
