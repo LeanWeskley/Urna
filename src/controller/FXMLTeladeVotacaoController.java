@@ -1,8 +1,7 @@
 package controller;
+
 import java.io.*;
 import javazoom.jl.player.*;
-
-
 import dao.Conexao;
 import dao.VotoDAO;
 import java.net.URL;
@@ -43,12 +42,6 @@ public class FXMLTeladeVotacaoController implements Initializable {
         //Click no primeiro campo
         c1.requestFocus(); 
         c1.setOnKeyReleased((KeyEvent e) ->{ 
-            /*if (e.getCode() == KeyCode.ENTER) {
-                    //branco();
-                    som();
-                    Principal.trocaVotoFim();
-                    c1.requestFocus();
-            }*/
             if (e.getCode() == KeyCode.DECIMAL) {
                         limpar();
                         c1.setText("0");

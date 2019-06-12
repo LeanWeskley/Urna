@@ -64,13 +64,8 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     void btCandidato() throws IOException {
-        Principal.trocaApuracao();
-        /*Parent partidos = FXMLLoader.load(getClass().getResource("view/FXMLApuracao.fxml"));
-        Scene scene = new Scene(partidos);
-            stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Apuração de votos");
-            stage.show();*/
+        Principal.sceneLogin();
+       // Principal.trocaApuracao();
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -23,15 +23,18 @@ public class Principal extends Application {
     public static Scene sceneVoto;
     public static Scene sceneTelaVoto;
     public static Scene sceneApuracao;
+    public static Scene sceneLogin;
     
     
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent telaVoto = FXMLLoader.load(getClass().getResource("/view/FXMLTeladeVotacao.fxml"));
         Parent urna = FXMLLoader.load(getClass().getResource("FXMLFim.fxml"));
-        Parent tela = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
+        Parent tela = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
+        Parent login = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
         Parent apuracao = FXMLLoader.load(getClass().getResource("FXMLApuracao.fxml"));
         Scene scene = new Scene(tela);
+        sceneLogin = new Scene(login);
         sceneVoto = new Scene(urna);
         sceneTelaVoto = new Scene(telaVoto);
         sceneApuracao = new Scene(apuracao);
@@ -75,6 +78,9 @@ public class Principal extends Application {
     
     public static void trocaApuracao(){        
         stage.setScene(sceneApuracao);
+    }
+    public static void sceneLogin(){
+        stage.setScene(sceneLogin);
     }
     
     

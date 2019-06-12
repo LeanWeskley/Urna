@@ -43,7 +43,7 @@ public class FXMLLoginController implements Initializable {
     @FXML
     void btEntrar() throws IOException {
         if (tfLogin.getText().equals("usuario") && psSenha.getText().equals("123")) {
-            Parent principal = FXMLLoader.load(getClass().getResource("/view/FXMLPrincipal.fxml"));
+            Parent principal = FXMLLoader.load(getClass().getResource("/view/FXMLApuracao.fxml"));
             Scene scene = new Scene(principal);
             view.Principal.stage.setScene(scene);
             view.Principal.stage.setTitle("Tela Principal");
