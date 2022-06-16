@@ -1,0 +1,18 @@
+1º O usuário deverá logar (campo usuário e campo senha).
+2º Acessar o menu de cadastro e em seguida clicar em chapa.
+3º Digitar numero e nome do partido (chapa).
+4º Clicar em cadastrar e voltar à tela principal.
+5° Acessar o menu de cadastro e em seguida clicar em candidatos.
+6° Digitar nome e número, escolher partido(chapa) e cargo e clicar em cadastrar.
+7º Ao entrar na tela chapas o usuário visualiza as chapas cadastradas podendo deletá-las e editá-las.
+8° Na tela urna o usuário poderá efetuar o voto, contando com todas as funcionalidades disponíveis, sendo elas: voto em branco, botão de corrigir e de confirmar.
+9° Na mesma tela contamos com a função que mostrar, a partir da amostragem do número no textfield deverá aparecer nome, chapa e cargo do candidato respectivo.
+10° Na tela de apuração dos votos, o mesário tem acesso rápido e claro a todos os votos contabilizados de todos os candidatos, podendo organizá-los como bem preferir contando com a função de ordem decrescente mostrando do mais ao menos votado.
+
+
+
+1°Mensagem:”chapa cadastrada com sucesso!”
+2° Mensagem “candidato cadastrado com sucesso!”
+3°Mensagem “Chapa deletada com sucesso!”
+4°Mensagem “Chapa editada com sucesso!”
+5°Mensagem “Votação concluída, próximo!
